@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section id="price-results">
+    {% for price in prices %}
+      <div>
+        <h2>{{ price.supplier }}</h2>
+        <div>
+          Total price: {{ price.final_price }}<br>
+          Shipping: {{ price.shipping_days }} days
+        </div>
+        {% if price.lowest_price %}
+          <div class="label-lowest-price">Lowest price</div>
+        {% endif %}
+      </div>
+    {% else %}
+      No suppliers were found
+    {% endfor %}
+  </section>
+{% endblock content %}

@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+}
+
+h1 {
+  text-align: center;
+}
+
+#search-form {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  border: 1px solid #999;
+  display: grid;
+  grid-template-columns: [labels] auto [fields] 1fr;
+  gap: 15px;
+}
+#search-form > label {
+  grid-column: labels;
+}
+#search-form > input,
+#search-form > button {
+  grid-column: fields;
+}
+
+#price-results {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+#price-results > div {
+  position: relative;
+  padding: 15px;
+  border: 1px solid #999;
+}
+#price-results h2 {
+  margin: 20px 0;
+}
+#price-results .label-lowest-price {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 8px;
+  background: #8e5;
+  font-size: .8em;
+}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form id="search-form" action="{{ url('results') }}" method="post">
+    <label for="product">Product</label>
+    <select id="product" name="product" required>
+      <option value="">Select a product</option>
+      {% for product in products %}
+        <option value="{{ product.id }}">{{ product.name }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="quantity">Quantity</label>
+    <input id="quantity" name="quantity" type="number" min="1" placeholder="Enter a quantity" required>
+
+    <button type="submit">Search</button>
+  </form>
+{% endblock content %}
