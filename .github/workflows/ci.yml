@@ -31,4 +31,6 @@ jobs:
       - name: Lint
         run: uv run ruff check src tests
       - name: Run tests
-        run: uv run pytest
+        run: |
+          tests/create_test_db.sh
+          uv run pytest
