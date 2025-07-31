@@ -4,9 +4,9 @@
   <section id="price-results">
     {% for price in prices %}
       <div>
-        <h2>{{ price.supplier }}</h2>
+        <h2>{{ price.supplier.name }}</h2>
         <div>
-          Total price: {{ price.final_price }}<br>
+          Total price: {{ "{:.2f} €".format(price.final_price) }}<br>
           Shipping: {{ price.shipping_days }} days
         </div>
         {% if price.lowest_price %}

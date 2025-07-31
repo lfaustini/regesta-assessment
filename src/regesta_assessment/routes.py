@@ -60,8 +60,12 @@ async def _get_product_prices(
 
     stmt = (
         select(t.ProductSupplier)
-        .filter_by(id_product=id_product)
-        .where(t.ProductSupplier.stock >= quantity)
+        .join(t.Supplier)
+        .where(
+            t.ProductSupplier.id_product == id_product,
+            t.ProductSupplier.stock >= quantity,
+        )
+        .order_by(t.Supplier.name)
         .options(
             selectinload(t.ProductSupplier.supplier),
             selectinload(t.ProductSupplier.discounts),
@@ -83,9 +87,10 @@ async def _get_product_prices(
             ):
                 final_price = final_price / 100 * (100 - discount.discount_percentage)
 
+        final_price = round(final_price, 2)
         item = {
-            "supplier": row.supplier.name,
-            "final_price": f"{final_price:.2f} €",
+            "supplier": row.supplier,
+            "final_price": final_price,
             "shipping_days": row.shipping_days,
             "lowest_price": False,
         }
